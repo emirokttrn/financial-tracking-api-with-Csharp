@@ -18,10 +18,10 @@ builder.Services.AddOpenApi();
 
 // MySQL bağlantısı
 builder.Services.AddDbContext<FinancialTrackingAPI.AppDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))
-    )
+  options.UseMySql(
+    builder.Configuration.GetConnectionString("DefaultConnection"),
+    new MySqlServerVersion(new Version(8, 0, 0))
+)
 );
 builder.Services.AddCors(options =>
 {
