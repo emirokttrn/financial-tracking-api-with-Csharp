@@ -1,4 +1,5 @@
 
+using FinancialTrackingAPI;
 using FinancialTrackingAPI.Interfaces;
 using FinancialTrackingAPI.Repositories;
 using FinancialTrackingAPI.Service;
@@ -44,6 +45,13 @@ builder.Services.AddScoped<IAssetService, AssetService>();
 builder.Services.AddHttpClient<ICoinGeckoService, CoinGeckoService>();
 
 var app = builder.Build();
+
+
+using (var serviceScope = app.Services.CreateScope())
+{
+    var db = serviceScope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
 
 if (app.Environment.IsDevelopment())
 {
