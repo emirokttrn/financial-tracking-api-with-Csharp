@@ -5,3 +5,7 @@ obj/
 .DS_Store
 appsettings.Development.json
 appsettings.json
+.env
+.env.development
+.env.production
+frontend/dist/
